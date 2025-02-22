@@ -7,10 +7,12 @@ import numpy as np
 def Graph_converter(number_of_vertices, probability_of_connectivity):
     edges_list = []
     connectivity = [0, 1]
+    list_of_vertices = []
     p = []
     p.append(1 - probability_of_connectivity)
     p.append(probability_of_connectivity)
     for i in range(1, number_of_vertices + 1):
+        list_of_vertices.append(i)
         for j in range(1, number_of_vertices + 1):
             if i == j:
                 continue
@@ -18,6 +20,7 @@ def Graph_converter(number_of_vertices, probability_of_connectivity):
             if connectivity_value == 1:
                 edges_list.append((i, j))
     G = nx.Graph()
+    G.add_nodes_from(list_of_vertices)
     G.add_edges_from(edges_list)
     return G
 
